@@ -1,0 +1,8 @@
+QKD + AES
+
+
+Payment Details
+
+Aadhar number for patient details
+
+Arogya sree card

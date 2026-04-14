@@ -1,0 +1,42 @@
+{% extends 'patienthome.html' %}
+
+{% block content %}
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container my-5 py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 text-white animated slideInLeft">Upload Reports</h1>
+                {% if msg %}
+                <div class="alert alert-success" role="alert">
+                    {{ msg }}
+                </div>
+                {% endif %}                
+                
+                <form action="{% url 'Upload_Reports' id=id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="doctor">Select Doctor:</label>
+                    <select name="doctoremail" id="doctor" required>
+                        {% for doctor in doctor %}
+                            <option value="{{ doctor.email }}">{{ doctor.email }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="form-group">
+                        <label for="filename" class="form-label">File Name</label>
+                        <input type="text" class="form-control" name="filename" id="filename" placeholder="Enter Your Filename" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="form-label">File</label>
+                        <input type="file" class="form-control" name="file" id="file">
+                    </div>
+                
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
